@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Player{% endblock %}</title>
+    <!-- load path to your static files-->
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'music/css/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Satisfy" />
+    <script src="{% static 'music/js/jquery.min.js' %}"></script>
+    <script src="{% static 'music/js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+
+            <!-- load logo of website-->
+            <div class="navbar-header">
+                <buttom type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar" >
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </buttom>
+                <a class="navbar-brand" href="{% url 'music:index' %}"> Drum </a>
+            </div>
+
+                 <!-- Nav items-->
+            <div class="collapse navbar-collapse" id="topNavBar">
+
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="{% url 'music:index' %}" class="glyphicon glyphicon-cd" aria-hidden="true">&nbspAlbum</a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav">
+                    <li class="">
+                        <a href="{% url 'music:all-songs' %}" class="glyphicon glyphicon-music" aria-hidden="true">&nbspSongs</a>
+                    </li>
+                </ul>
+
+                <form class="navbar-form navbar-left" action="#" method="get">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" vale="" placeholder="Search">
+                    </div>
+                    <button type=""submit class="btn btn-default">Search</button>
+                </form>
+
+                 <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a href="{% url 'music:album-add' %}" class="glyphicon glyphicon-plus" aria-hidden="true">&nbspAlbum</a>
+                    </li>
+                     <li class="">
+                        <a href="{% url 'music:add-song' %}" class="glyphicon glyphicon-plus" aria-hidden="true">&nbspSongs</a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'music:index' %}" class="glyphicon glyphicon-off" aria-hidden="true">&nbspLogout</a>
+                    </li>
+                     <li class="">
+                        <a href="{% url 'music:index' %}"aria-hidden="true">&nbsp{{ querySet }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% block body %}
+    <!--every page content go inside this block -->
+{% endblock %}
+
+</body>
+</html>

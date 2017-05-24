@@ -1,0 +1,30 @@
+{% extends 'music/base.html' %}
+{% block tiltle %}Player{% endblock %}
+
+
+
+{% block body %}
+
+    <form action="{% url 'music:run-code' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="">
+                <button type="submit">Run the code</button>
+    </form>
+
+    {% load staticfiles %}
+        <div class="container">
+            <div class="row">
+                 {% for album in all_albums %}
+                    <div class="col-md-3">
+                        <img src="{{ album.album_logo.url }}" class="img_tag">
+                        <h3><a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a></h3>
+                        <form action="{% url 'music:album-delete' album.id %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ album.id }}">
+                            <button type="submit">Delete</button>
+                        </form>
+                      </div>
+                 {% endfor %}
+            </div>
+        </div>
+{% endblock %}

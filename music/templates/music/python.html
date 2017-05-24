@@ -1,0 +1,16 @@
+{% extends 'music/base.html' %}
+{% block tiltle %}Python-compilerr{% endblock %}
+
+
+
+{% block body %}
+    <form action="{% url 'music:run-code' %}" method="POST">
+                {% csrf_token %}
+                <textarea name="cpp_code" value="//write you code here" style="width: 500px;height: 500px;"></textarea>
+                <button type="submit">Run the code</button>
+    </form>
+    <h2>Response of you code:</h2>
+    <h4>{{ answer }}</h4>
+    <h4>{{ total_time }}</h4>
+    <h5>{{ text }}</h5>
+{% endblock %}

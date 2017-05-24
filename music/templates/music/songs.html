@@ -1,0 +1,25 @@
+{% extends 'music/base.html' %}
+{% block tiltle %}Player{% endblock %}
+
+
+
+{% block body %}
+    <ul>
+        {% for song in all_songs %}
+        <li><h3><a href="{% url 'music:detail' song.song.id%}">{{ song.song_title }}</a></h3></li>
+            <form action="{% url 'music:delete-song' song.id %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{ song.id }}">
+                <button type="submit">Delete</button>
+            </form>
+
+            <br><br>
+
+        {% endfor %}
+    </ul>
+    <form action="{% url 'music:run-code' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="">
+                <button type="submit">Delete</button>
+    </form>
+{% endblock %}
